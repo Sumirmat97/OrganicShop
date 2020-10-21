@@ -1,0 +1,62 @@
+<h1>Order details</h1>
+
+<div class="row" *ngIf="order">
+    <div class="col-md-6">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title">Order Summary</h4>
+                        <p class="card-text"> 
+                            <span class="font-weight-bold">Order Date</span>: 
+                            {{ order.datePlaced | date:'mediumDate' }}</p>
+                        <p class="card-text"> 
+                            <span class="font-weight-bold">Order Total</span>: 
+                            {{ order.getTotalPrice() | currency:'INR':'symbol'}} ({{ order.items.length }} items)
+                        </p>
+                    </div>
+                </div> 
+            </div>
+        </div>
+        <br/> 
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title">Shipping Details</h4>
+                        <p class="card-text">
+                            <span class="font-weight-bold">Name </span>: 
+                            {{ order.shipping.name }}
+                        </p>
+                        <p class="card-text"> 
+                            <span class="font-weight-bold">Address</span>: <br /> 
+                            {{ order.shipping.addressLine1 }} 
+                            <br />
+                            {{ order.shipping.addressLine2 }}
+                            <br />
+                            {{ order.shipping.city }}
+                            <br />
+                            {{ order.shipping.state }} - {{ order.shipping.pincode }}
+                        </p>
+                    </div>
+                </div> 
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-body">
+              <h4 class="card-title">Shippment Details</h4>
+              <ul class="list-group list-group-flush">
+                  <li 
+                    *ngFor="let item of order.items"
+                    class="list-group-item"> 
+                        {{ item.quantity }} x {{ item.product.title }} 
+                        <div class="float-right"> 
+                            {{ item.totalPrice | currency:'INR':'symbol' }}</div>
+                    </li>
+              </ul>
+            </div>
+        </div> 
+    </div>
+</div>

@@ -1,0 +1,26 @@
+<h1>My Orders</h1>
+
+<div *ngIf="orders$ | async as orders">
+    <ngx-datatable class="material" [rows]="orders" [columnMode]="'force'" [headerHeight]="50" [footerHeight]="50"
+    [rowHeight]="50" [limit]="10">
+
+        <ngx-datatable-column name="Date Placed" prop="order.datePlaced">
+        <ng-template let-row="row" ngx-datatable-cell-template>
+            {{row.order.datePlaced | date:'mediumDate'}}
+        </ng-template>
+        </ngx-datatable-column>
+
+        <ngx-datatable-column name="Total Items" prop="row.order.items.length">
+            <ng-template let-row="row" ngx-datatable-cell-template>
+            {{row.order.items.length }}
+            </ng-template>
+        </ngx-datatable-column>
+
+        <ngx-datatable-column name="Order Info" [sortable]="false">
+        <ng-template let-row="row" ngx-datatable-cell-template>
+            <a [routerLink]="['/order-details', row.key]">View</a>
+        </ng-template>
+        </ngx-datatable-column>
+
+    </ngx-datatable>
+</div>
