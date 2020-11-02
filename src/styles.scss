@@ -48,9 +48,21 @@ h1, h2, h3 {
   border-color: $primary-color;
 }
 
+.btn-primary.focus, .btn-primary:focus {
+  background-color: #c1d62e;
+  box-shadow: 0 0 0 .2rem #dfef2e;
+  border-color: #c1d62e;
+}
+
 .form-control:focus {
   border-color: $primary-color;
   box-shadow: 0 0 0 0.01rem #c1d62e;
+}
+
+// active green button
+.btn-primary:not(:disabled):not(.disabled):active, .btn-primary:not(:disabled):not(.disabled).active, .show > .btn-primary.dropdown-toggle {
+  background-color: $primary-color-hover;
+  border-color: $primary-color-hover;
 }
 
 div.col .text-center{
